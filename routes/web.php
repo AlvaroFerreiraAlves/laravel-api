@@ -21,5 +21,7 @@ Route::post('pagseguro-lightbox-code','PagSeguroController@lightboxCode')->name(
 Route::get('pagseguro-transparente','PagSeguroController@transparente')->name('pagseguro.transparente');
 Route::post('pagseguro-transparente-code','PagSeguroController@getCode')->name('pagseguro.transparente.code');
 Route::post('pagseguro-billet','PagSeguroController@billet')->name('pagseguro.billet');
+Route::get('pagseguro-transparente-card','PagSeguroController@card')->name('pagseguro.transparente.card');
+Route::post('pagseguro-transparente-card-transaction','PagSeguroController@cardTransaction')->name('pagseguro.transparente.transaction');
 
 

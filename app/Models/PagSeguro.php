@@ -84,9 +84,9 @@ class PagSeguro extends Model
         $params = [
             'email' => config('pagseguro.email'),
             'token' => config('pagseguro.token'),
-            'sendHash'=>$sendHash,
-            'paymentMode'=>'default',
-            'paymentMethod'=>'boleto',
+            'senderHash' => $sendHash,
+            'paymentMode' => 'default',
+            'paymentMethod' => 'boleto',
             'currency' => 'BRL',
             'itemId1' => '0001',
             'itemDescription1' => 'Produto PagSeguroI',
@@ -102,7 +102,8 @@ class PagSeguro extends Model
             'senderName' => 'Jose Comprador',
             'senderAreaCode' => '99',
             'senderPhone' => '99999999',
-            'senderEmail' => 'comprador@uol.com.br',
+            'senderEmail' => 'c12889565093924203530@sandbox.pagseguro.com.br',
+            'senderCPF' => '21442453125',
             'shippingType' => '1',
             'shippingAddressStreet' => 'Av. PagSeguro',
             'shippingAddressNumber' => '9999',
@@ -124,6 +125,13 @@ class PagSeguro extends Model
         $body = $response->getBody();
         $contents = $body->getContents();
 
-        return $contents;
+        $xml = simplexml_load_string($contents);
+
+        return $xml->paymentLink;
+    }
+
+    public function paymentCredcard($request)
+    {
+        return $request->all();
     }
 }

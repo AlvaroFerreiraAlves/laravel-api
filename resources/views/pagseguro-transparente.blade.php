@@ -13,7 +13,7 @@
 
 </form>
 
-<a href="#" onclick="setSessionId()" class="btn btn-success">Pagar com boleto</a>
+<button type="button" onclick="setSessionId()" class="btn btn-success">Pagar com Boleto</button>
 
 <div class="payments-methods"></div>
 
@@ -66,8 +66,8 @@
             url: "pagseguro-billet",
             method: "POST",
             data: data
-        }).done(function (data) {
-            console.log(data);
+        }).done(function (url) {
+            location.href=url;
         }).fail(function () {
             console.log(data);
         });
