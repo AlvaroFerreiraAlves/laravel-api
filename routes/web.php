@@ -25,5 +25,7 @@ Route::get('pagseguro-transparente-card','PagSeguroController@card')->name('pags
 Route::post('pagseguro-transparente-card-transaction','PagSeguroController@cardTransaction')->name('pagseguro.transparente.transaction');
 */
 
+Route::get('/','StoreController@index')->name('home');
+
 
 
