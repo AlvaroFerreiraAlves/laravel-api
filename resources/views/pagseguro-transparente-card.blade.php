@@ -72,6 +72,7 @@
     </form>
 
     <div class="preloader" style="display: none;">Preloader....</div>
+        <div class="message" style="display: none;"></div>
 
 </div>
 {{--Jquery--}}
@@ -132,7 +133,7 @@
             }
         });
     }
-    
+
     function createCredCardToken() {
         PagSeguroDirectPayment.createCardToken({
             cardNumber:  $("input[name=cardNumber]").val().replace(/ /g, ''),
@@ -162,7 +163,7 @@
 
         });
     }
-    
+
     function createTransactionCard() {
         var sendHash = PagSeguroDirectPayment.getSenderHash();
         var data = $("#form").serialize()+"&senderHash="+sendHash;
@@ -171,8 +172,9 @@
             method: "POST",
             data: data,
             beforeSend: startPreloader("Realizando o pagamento com o cartão")
-        }).done(function (data) {
-            alert(data);
+        }).done(function (code) {
+            $(".message").html("Código da transação "+code);
+            $(".message").show();
         }).fail(function () {
             alert("Fail request");
         }).always(function () {

@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
 });
 
@@ -23,5 +23,7 @@ Route::post('pagseguro-transparente-code','PagSeguroController@getCode')->name('
 Route::post('pagseguro-billet','PagSeguroController@billet')->name('pagseguro.billet');
 Route::get('pagseguro-transparente-card','PagSeguroController@card')->name('pagseguro.transparente.card');
 Route::post('pagseguro-transparente-card-transaction','PagSeguroController@cardTransaction')->name('pagseguro.transparente.transaction');
+*/
+
 
 
