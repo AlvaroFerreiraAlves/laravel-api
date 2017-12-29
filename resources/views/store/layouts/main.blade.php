@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{{url('assets/css/font-awesome.min.css')}}">
     {{--Google fonts--}}
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800" rel="stylesheet">
+    <link rel="stylesheet" href="{{url('assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{url('assets/css/reset.css')}}">
 
 </head>
 <body>

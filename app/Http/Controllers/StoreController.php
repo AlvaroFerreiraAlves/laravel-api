@@ -10,4 +10,10 @@ class StoreController extends Controller
     {
         return view('store.home.index');
     }
+
+    public function cart()
+    {
+        $title = "Meu Carrinho de Compras";
+        return view('store.cart.cart',compact('title'));
+    }
 }
