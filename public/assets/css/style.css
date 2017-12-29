@@ -30,5 +30,48 @@
     float: left;
 }
 .product a:hover{
-    background: red;
+    background: #466b03;
 }
+
+.img-cart{
+    max-width: 40px;
+}
+
+.total-cart{
+    float: right;
+    padding: 20px;
+    font: 600 2.2em "open sans";
+    background:#77b800;
+    color:#fff;
+}
+
+.finish-cart{
+    float: right;
+    width: 100%;
+}
+.finish-cart a{
+    background: #000;
+    padding: 10px 20px;
+    color: #fff;
+    font-weight: bold;
+    margin: 20px 0;
+    float: right;
+    text-decoration: none;
+}
+.finish-cart a:hover{
+    background: #585656;
+}
+
+.cart-action-item{
+    font: 800 2em "open sans";
+    color: #77b800;
+}
+
+a.cart-action-item:link{
+    text-decoration: none;
+}
+
+a.cart-action-item:hover{
+    color: #000000;
+}
+
