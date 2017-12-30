@@ -3,13 +3,16 @@
     <section class="products">
         <h1 class="title">Lançamentos</h1>
 
-        @for($i=0;$i<8;$i++)
+       @forelse($products as $product)
         <article class="product col-md-3 col-sm-6 col-xs-12">
-            <img src="{{url('assets/imgs/temp/tv.jpg')}}" alt="">
-            <h2>Produto 1</h2>
-            <a href="#">Adicionar no carrinho <i class="fa fa-cart-plus" aria-hidden="true"></i></a>
+            <img src="{{url("assets/imgs/temp/{$product->image}")}}" alt="">
+            <h2>{{$product->name}}</h2>
+            <a href="{{route('add.cart',$product->id)}}">Adicionar no carrinho <i class="fa fa-cart-plus" aria-hidden="true"></i></a>
         </article>
-            @endfor
+           @empty
+            <p>Não existe produtos cadastrados</p>
+           @endforelse
+
 
     </section>
 @endsection

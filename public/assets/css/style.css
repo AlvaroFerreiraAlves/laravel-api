@@ -75,3 +75,17 @@ a.cart-action-item:hover{
     color: #000000;
 }
 
+.btn-form{
+    width: 100%;
+    background-color: #76b80e;
+    border-color: #75b80e;
+}
+.btn-form:hover {
+    color: #fff;
+    background-color: #528403;
+    border-color: #528403;
+}
+
+
+
+
