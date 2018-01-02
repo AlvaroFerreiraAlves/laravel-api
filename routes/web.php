@@ -25,10 +25,18 @@ Route::get('pagseguro-transparente-card','PagSeguroController@card')->name('pags
 Route::post('pagseguro-transparente-card-transaction','PagSeguroController@cardTransaction')->name('pagseguro.transparente.transaction');
 */
 
+Auth::routes();
+
 Route::get('/','StoreController@index')->name('home');
 Route::get('carrinho','StoreController@cart')->name('cart');
 Route::get('perfil','UserController@profile')->name('profile');
 Route::get('add-cart/{id}','CartController@add')->name('add.cart');
+Route::get('remove-cart/{id}','CartController@remove')->name('remove.cart');
+Route::get('logout','UserController@logout')->name('logout');
+
+
+
+
 
 
 

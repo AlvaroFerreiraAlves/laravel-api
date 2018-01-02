@@ -20,5 +20,28 @@ class CartController extends Controller
         $cart->add($product);
 
         Session::put('cart',$cart);
+
+        return redirect()->route('cart');
+    }
+
+    public function remove($id)
+    {
+        $product = Product::find($id);
+        if(!$product)
+            return redirect()->back();
+
+        $cart = new Cart();
+        $cart->remove($product);
+        Session::put('cart',$cart);
+
+        return redirect()->route('cart');
+
+    }
+
+    public function emptyCart()
+    {
+        if(Session::has('cart')){
+            Session::forget('cart');
+        }
     }
 }

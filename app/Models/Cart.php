@@ -12,7 +12,7 @@ class Cart extends Model
 
     public function __construct()
     {
-        if(Session::has('cart')){
+        if (Session::has('cart')) {
             $cart = Session::get('cart');
 
             $this->items = $cart->items;
@@ -21,11 +21,33 @@ class Cart extends Model
 
     public function add(Product $product)
     {
+        if (isset($this->items[$product->id])) {
+            $this->items[$product->id] = [
+                'item' => $product,
+                'qtd' => $this->items[$product->id]['qtd'] + 1,
+            ];
+        } else {
+            $this->items[$product->id] = [
+                'item' => $product,
+                'qtd' => 1,
+            ];
+        }
 
-        $this->items[$product->id] = [
-            'item' => $product,
-            'qtd' => 1,
-        ];
+
+    }
+
+    public function remove(Product $product)
+    {
+
+        if (isset($this->items[$product->id]) && $this->items[$product->id]['qtd']>1) {
+            $this->items[$product->id] = [
+                'item' => $product,
+                'qtd' => $this->items[$product->id]['qtd'] - 1,
+            ];
+        }
+        else if(isset($this->items[$product->id])){
+            unset($this->items[$product->id]);
+        }
 
     }
 
@@ -33,4 +55,23 @@ class Cart extends Model
     {
         return $this->items;
     }
+
+    public function total(){
+        $total = 0;
+        foreach ($this->items as $item)
+        {
+            $subTotal = $item['item']->price * $item['qtd'];
+
+            $total += $subTotal;
+        }
+
+        return $total;
+    }
+
+    public function totalItems()
+    {
+        return count($this->items);
+    }
+
+
 }

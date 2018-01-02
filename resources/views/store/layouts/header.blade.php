@@ -17,18 +17,34 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{route('cart')}}">carrinho<i class="fa fa-shopping-cart" aria-hidden="true"></i> <span class="badge">42</span></a></li>
+                    <li>
+                        <a href="{{route('cart')}}">
+                            carrinho
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            <span class="badge">
+                                @if(\Illuminate\Support\Facades\Session::has('cart'))
+                                    {{\Illuminate\Support\Facades\Session::get('cart')->totalItems()}}
+                                    @endif
+                            </span>
+                        </a>
+                    </li>
+                    @if(\Illuminate\Support\Facades\Auth::check())
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">Álvaro Ferreira <span class="caret"></span></a>
+                           aria-expanded="false">{{\Illuminate\Support\Facades\Auth::user()->name}} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{route('profile')}}">Meu perfil</a></li>
                             <li><a href="#">Minha senha</a></li>
                             <li><a href="#">Meus Pedidos</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#">Sair</a></li>
+                            <li><a href="{{route('logout')}}">Sair</a></li>
                         </ul>
                     </li>
+                        @else
+                    <li>
+                        <a href="{{route('login')}}">Login</a>
+                    </li>
+                        @endif
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->

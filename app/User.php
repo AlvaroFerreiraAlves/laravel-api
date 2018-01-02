@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','cpf','street','number','complement','district','postal_code','city','state','country','phone','area_code','birth_date'
     ];
 
     /**
@@ -26,4 +26,25 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    public function rules()
+    {
+        return [
+            'name'          => 'required|string|min:3|max:255',
+            'email'         => 'required|string|email|max:255|unique:users',
+            'password'      => 'required|string|min:6|confirmed',
+            'cpf'           => 'required|unique:users',
+            'birth_date'    => 'required',
+            'street'        => 'required',
+            'number'        => 'integer|required',
+            'complement'    => 'max:200',
+            'postal_code'   => 'integer|required',
+            'city'          => 'required',
+            'state'         => 'required',
+            'country'       => 'required',
+            'area_code'     => 'integer|required',
+            'phone'         => 'required|integer',
+        ];
+    }
 }

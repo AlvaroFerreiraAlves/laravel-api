@@ -21,8 +21,13 @@ class StoreController extends Controller
 
 
         $cart = new Cart();
-        dd($cart->getItems());
+        $products = $cart->getItems();
 
-        return view('store.cart.cart',compact('title'));
+
+        return view('store.cart.cart',compact('title','products','cart'));
     }
+
+
+
+
 }
