@@ -3,24 +3,23 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Cart;
 
-class RedirectIfAuthenticated
+class CheckQtyItemsCart
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
-     * @param  string|null  $guard
      * @return mixed
      */
-    public function handle($request, Closure $next, $guard = null)
+    public function handle($request, Closure $next)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect('/');
-        }
-
+        $cart = new Cart;
+        if ($cart->totalItems() < 1)
+            return redirect()->back()->with('message', 'Não existe itens no carrinho!');
+        
         return $next($request);
     }
 }

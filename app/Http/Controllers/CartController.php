@@ -2,46 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cart;
-use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
+use App\Models\Product;
+use App\Models\Cart;
+use Session;
 
 class CartController extends Controller
 {
     public function add($id)
     {
         $product = Product::find($id);
-        if(!$product)
+        if( !$product )
             return redirect()->back();
-
-
-        $cart = new Cart();
+        
+        $cart = new Cart;
         $cart->add($product);
-
-        Session::put('cart',$cart);
-
+        
+        Session::put('cart', $cart);
+        
         return redirect()->route('cart');
     }
-
+    
     public function remove($id)
     {
         $product = Product::find($id);
-        if(!$product)
+        if( !$product )
             return redirect()->back();
-
-        $cart = new Cart();
+        
+        $cart = new Cart;
         $cart->remove($product);
-        Session::put('cart',$cart);
-
+        
+        Session::put('cart', $cart);
+        
         return redirect()->route('cart');
-
-    }
-
-    public function emptyCart()
-    {
-        if(Session::has('cart')){
-            Session::forget('cart');
-        }
     }
 }

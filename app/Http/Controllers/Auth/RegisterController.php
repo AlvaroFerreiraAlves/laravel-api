@@ -38,6 +38,7 @@ class RegisterController extends Controller
     public function __construct(User $user)
     {
         $this->user = $user;
+        
         $this->middleware('guest');
     }
 
@@ -56,11 +57,12 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return User
      */
     protected function create(array $data)
     {
         $data['password'] = bcrypt($data['password']);
+        
         return User::create($data);
     }
 }

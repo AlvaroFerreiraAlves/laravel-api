@@ -2,51 +2,52 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PagSeguro;
 use Illuminate\Http\Request;
+use App\Models\PagSeguro;
 
 class PagSeguroController extends Controller
 {
-    public function pagseguro(PagSeguro $pagSeguro)
+    public function pagseguro(PagSeguro $pagseguro)
     {
-        $code = $pagSeguro->generate();
-        $urlRedirect = config('pagseguro.url_redirect_after_request') . $code;
-
+        $code = $pagseguro->generate();
+        
+        $urlRedirect = config('pagseguro.url_redirect_after_request').$code;
+        
         return redirect()->away($urlRedirect);
     }
-
+    
     public function lightbox()
     {
         return view('pagseguro-lightbox');
     }
-
-    public function lightboxCode(PagSeguro $pagSeguro)
+    
+    public function lightboxCode(PagSeguro $pagseguro)
     {
-        return $pagSeguro->generate();
+        return $pagseguro->generate();
     }
-
+    
     public function transparente()
     {
         return view('pagseguro-transparente');
     }
-
-    public function getCode(PagSeguro $pagSeguro)
+    
+    public function getCode(PagSeguro $pagseguro)
     {
-        return $pagSeguro->getSessionId();
+        return $pagseguro->getSessionId();
     }
-
-    public function billet(Request $request, PagSeguro $pagSeguro)
+    
+    public function billet(Request $request, PagSeguro $pagseguro)
     {
-        return $pagSeguro->paymentBillet($request->sendHash);
+        return $pagseguro->paymentBillet($request->sendHash);
     }
-
-    public function card(Request $request, PagSeguro $pagSeguro)
+    
+    public function card()
     {
-        return view('pagseguro-transparente-card');
+        return view('pagseguro-transparent-card');
     }
-
-    public function cardTransaction(Request $request, PagSeguro $pagSeguro)
+    
+    public function cardTransaction(Request $request, PagSeguro $pagseguro)
     {
-        return $pagSeguro->paymentCredcard($request);
+        return $pagseguro->paymentCredCard($request);
     }
 }
