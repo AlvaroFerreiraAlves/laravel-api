@@ -27,12 +27,21 @@ Route::post('pagseguro-transparente-card-transaction','PagSeguroController@cardT
 
 Auth::routes();
 
-Route::get('/','StoreController@index')->name('home');
-Route::get('carrinho','StoreController@cart')->name('cart');
-Route::get('perfil','UserController@profile')->name('profile');
-Route::get('add-cart/{id}','CartController@add')->name('add.cart');
-Route::get('remove-cart/{id}','CartController@remove')->name('remove.cart');
-Route::get('logout','UserController@logout')->name('logout');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('perfil', 'UserController@profile')->name('profile');
+    Route::post('atualizar-perfil', 'UserController@profileUpdate')->name('profile.update');
+
+    Route::get('minha-senha', 'UserController@password')->name('password');
+    Route::post('atualizar-senha', 'UserController@passwordUpdate')->name('password.update');
+
+    Route::get('logout', 'UserController@logout')->name('logout');
+});
+
+Route::get('/', 'StoreController@index')->name('home');
+Route::get('carrinho', 'StoreController@cart')->name('cart');
+Route::get('add-cart/{id}', 'CartController@add')->name('add.cart');
+Route::get('remove-cart/{id}', 'CartController@remove')->name('remove.cart');
+
 
 
 
