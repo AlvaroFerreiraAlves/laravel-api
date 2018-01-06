@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Models\PagSeguro;
 
@@ -36,9 +38,16 @@ class PagSeguroController extends Controller
         return $pagseguro->getSessionId();
     }
     
-    public function billet(Request $request, PagSeguro $pagseguro)
+    public function billet(Request $request, PagSeguro $pagseguro, Order $order, Cart $cart)
     {
-        return $pagseguro->paymentBillet($request->sendHash);
+        $response = $pagseguro->paymentBillet($request->sendHash);
+
+        $order->newOrderProducts($cart, $response['reference'], $response['code']);
+        $cart->emptyCart();
+
+        return $response;
+
+       /* return $pagseguro->paymentBillet($request->sendHash);*/
     }
     
     public function card()

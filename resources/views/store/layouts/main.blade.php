@@ -12,11 +12,12 @@
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,800" rel="stylesheet">
         
         <!--Fonts Icons-->
-        <link rel="stylesheet" href="{{url('assets/css/style.css')}}">
+
         <link rel="stylesheet" href="{{url('assets/css/reset.css')}}">
-        
+        <link rel="stylesheet" href="{{url('assets/css/estilo.css')}}">
+
         <!--Favicon-->
-        <link rel="icon" type="image/png" href="{{url('assets/imgs/favicon.png')}}">
+        {{--<link rel="icon" type="image/png" href="{{url('assets/imgs/favicon.png')}}">--}}
     </head>
     <body>
         

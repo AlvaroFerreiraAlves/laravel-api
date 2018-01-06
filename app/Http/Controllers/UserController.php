@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
@@ -60,4 +61,27 @@ class UserController extends Controller
         
         return redirect()->route('home');
     }
+
+    public function myOrders(Order $order)
+    {
+        $title = "Meus Pedidos";
+
+        $orders = auth()->user()->orders;
+        return view('store.orders.orders',compact('title','orders'));
+    }
+
+    public function detailsOrder(Order $order, $reference)
+    {
+        $order = $order->where('user_id',auth()->user()->id)->where('reference', $reference)->get()->first();
+        if (!$order)
+            return redirect()->back();
+
+        $title = "Detalhes do pedido {$order->reference}";
+
+        $products = $order->products()->get();
+
+        return view('store.orders.products', compact('title', 'order', 'products'));
+    }
+
+
 }

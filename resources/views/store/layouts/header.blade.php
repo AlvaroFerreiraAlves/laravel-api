@@ -36,7 +36,7 @@
           <ul class="dropdown-menu">
             <li><a href="{{route('profile')}}">Meu Perfil</a></li>
             <li><a href="{{route('password')}}">Minha Senha</a></li>
-            <li><a href="#">Meus Pedidos</a></li>
+            <li><a href="{{route('my.orders')}}">Meus Pedidos</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="{{route('logout')}}">Sair</a></li>
           </ul>

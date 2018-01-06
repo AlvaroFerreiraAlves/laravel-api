@@ -11,8 +11,7 @@ $this->group(['middleware' => 'auth'], function(){
             ->name('method.payment');
     $this->post('pagseguro-getcode', 'PagSeguroController@getCode')->name('pagseguro.code.transparent');
     $this->post('pagseguro-payment-billet', 'PagSeguroController@billet')->name('pagseguro.billet');
-    
-    
+
     
     /*
      * Routes Profile
@@ -22,6 +21,8 @@ $this->group(['middleware' => 'auth'], function(){
     $this->get('minha-senha', 'UserController@password')->name('password');
     $this->post('atualizar-senha', 'UserController@passwordUpdate')->name('password.update');
     $this->get('logout', 'UserController@logout')->name('logout');
+    $this->get('meus-pedidos', 'UserController@myOrders')->name('my.orders');
+    $this->get('pedidos/{reference}', 'UserController@detailsOrder')->name('order.details');
 });
 
 $this->get('remove-cart/{id}', 'CartController@remove')->name('remove.cart');

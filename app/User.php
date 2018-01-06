@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Order;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -71,5 +72,10 @@ class User extends Authenticatable
         return $this->update([
             'password' => $newPassword,
         ]);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
 }

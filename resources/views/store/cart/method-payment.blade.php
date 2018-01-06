@@ -3,7 +3,11 @@
 @section('content')
 <h1 class="title">Escolha o meio de pagamento</h1>
 
-<a href="#" id="payment-billet">Boleto</a>
+<a href="#" id="payment-billet"><img src="{{url("assets/imgs/temp/boleto.jpg")}}" alt=""></a>
+
+<div class="preloader" style="display: none;">
+    <img src="{{url("assets/imgs/temp/preloader.gif")}}" alt="preloader">
+</div>
 {!! Form::open(['id' => 'form']) !!}
 {!! Form::close() !!}
 
@@ -17,6 +21,7 @@
     $(function(){
         $("#payment-billet").click(function(){
             setSessionId();
+            $(".preloader").show();
             
             return false;
         });
@@ -36,6 +41,9 @@
             paymentBillet();
         }).fail(function(){
             alert("Fail request... :-(");
+                $(".preloader").hide();
+        }).always(function () {
+            
         });
     }
     
@@ -49,12 +57,19 @@
             url: "{{route('pagseguro.billet')}}",
             method: "POST",
             data: data
-        }).done(function(url){
-            console.log(url);
+        }).done(function(data){
+            console.log(data);
+           if(data.success){
+               location.href=data.payment_link;
+           }else{
+                alert("Falha!");
+           }
 
-            location.href=url;
+
         }).fail(function(){
             alert("Fail request... :-(");
+        }).always(function () {
+            $(".preloader").hide();
         });
     }
 </script>
