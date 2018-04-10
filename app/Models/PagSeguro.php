@@ -137,4 +137,22 @@ class PagSeguro extends Model
         
         return $xml->code;
     }
+
+    public function getStatusTransaction($notificationCode)
+    {
+        $configs = $this->getConfigs();
+        $params = http_build_query($configs);
+
+        $guzzle = new Guzzle;
+        $response = $guzzle->request('GET', config('pagseguro.url_notification')."/{$notificationCode}", [
+            'query' => $params,
+        ]);
+        $body = $response->getBody();
+        $contents = $body->getContents();
+
+        $xml = simplexml_load_string($contents);
+
+        return $xml;
+
+    }
 }
