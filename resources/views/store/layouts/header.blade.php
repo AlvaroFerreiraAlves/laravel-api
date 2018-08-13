@@ -10,7 +10,7 @@
         <span class="icon-bar"></span>
       </button>
         <a class="navbar-brand" href="{{route('home')}}">
-            <img src="{{url('assets/imgs/logo-especializati.png')}}" alt="Curso de Laravel com PagSeguro" class="logo">
+            <img src="{{url('assets/imgs/logo-especializati.png')}}" alt="" class="logo">
         </a>
     </div>
 
