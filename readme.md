@@ -1,3 +1,10 @@
+## Laravel com PagSeguro - Checkout Transparente
+
+Implementação de uma MINI LOJA VIRTUAL COM A VERSÃO 5.4 DO FRAMEWORK LARAVEL INTEGRADO COM O PAGSEGURO.
+
+- Pagamentos por boleto bancário e cartão de crédito através do Checkout Transparente.
+
+
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
 <p align="center">
